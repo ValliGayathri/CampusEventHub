@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Club</title>
+    <style>
+        body {
+            background-color: #f2f7f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('bgimg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #2e7383;
+            margin-bottom: 0;
+        }
+        .header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            font-size: larger;
+            width: 100%;
+        }
+        .nav-container a {
+            color: #2e7383;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 5px;
+            box-shadow: 0 4px 8px rgb(26, 132, 146);
+        }
+        .nav-container a:hover {
+            background-color: #b7f1ec;
+        }
+        .container {
+            position: relative;
+            width: 80%;
+            margin: 20px auto;
+            color: black;
+            padding: 40px;
+            border-radius: 25px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+            box-sizing: border-box;
+            background-size: cover;
+            background-position: center;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        .container h2,
+        .container div {
+            position: relative;
+            z-index: 2;
+            color: rgb(191, 235, 251);
+            font-weight: bold;
+        }
+        .container[data-club="Happy Club"] {
+            background-image: url('music.png');
+        }
+        .container[data-club="Dance Club"] {
+            background-image: url('dance2.jpg');
+        }
+        .container[data-club="Photography Club"] {
+            background-image: url('rmf.jpg');
+        }
+        .container[data-club="Echarts Club"] {
+            background-image: url('eco.jpg');
+        }
+        .container .content {
+            margin-bottom: 40px;
+        }
+        .container button {
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            padding: 10px;
+            background-color: rgb(57, 152, 159);
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .container button:hover {
+            background-color: rgba(137, 222, 212, 0.441);
+            box-shadow: 0 0 10px rgba(101, 206, 194, 0.441);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CAMPUS EVENT HUB</h1>
+        <div class="nav-container">
+            <a href="Homepage.html">Home</a>
+            <a href="clubevent.html">Club Events</a>
+            <a href="clgevents.html">College Events</a>
+            <a href="login.html">Logout</a>
+        </div>
+    </div>
+
+    <div class="container" data-club="Happy Club">
+        <h2>Happy Club</h2>
+        <div class="content">
+            Happy Club of SVECW is dedicated to the promotion of happiness and well-being among the student community. This club focuses on providing activities and events that uplift and bring joy to students, creating a positive environment on campus.
+        </div>
+        <button onclick="redirectToLogin('happy club')">></button>
+    </div>
+
+    <div class="container" data-club="Dance Club">
+        <h2>Dance Club</h2>
+        <div class="content">
+            The idea behind establishing the club is to promote dance. It was formed to bring out the dancing talents and give a platform to those who have a passion and love for dance. It not only focuses on entertaining people but also works on bringing out motivational messages that will be useful for the students.
+        </div>
+        <button onclick="redirectToLogin('dance club')">></button>
+    </div>
+
+    <div class="container" data-club="Photography Club">
+        <h2>Photography Club</h2>
+        <div class="content">
+            The Photography Club provides the best platform to ponder on the social issues combined with diverse talents of students. In this way, students get a chance to showcase their talents as well. It makes most of the students participate voluntarily in various events conducted in SVECW.
+        </div>
+        <button onclick="redirectToLogin('photography club')">></button>
+    </div>
+
+    <div class="container" data-club="Echarts Club">
+        <h2>Echarts Club</h2>
+        <div class="content">
+            The Echarts Club was established to unite positively driven students with an idea of helping local people to protect the environment with the right attitude. This club is a culmination of students’ passion towards chemistry concerned works and environmental hazards.
+        </div>
+        <button onclick="redirectToLogin('echarts club')">></button>
+    </div>
+
+    <script>
+        function redirectToLogin(clubName) {
+            window.location.href = 'clubLogin.html?club=' + clubName;
+        }
+    </script>
+</body>
+</html>

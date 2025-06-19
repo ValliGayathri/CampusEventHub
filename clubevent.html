@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Events</title>
+    <style>
+        body {
+            background-color: #f2f7f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('bgimg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            color: #2e7383;
+            margin-bottom: 0;
+        }
+        .header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+            font-size: larger;
+            width: 100%;
+        }
+        .nav-container a {
+            color: #2e7383;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 5px;
+            box-shadow: 0 4px 8px rgb(26, 132, 146);
+        }
+        .nav-container a:hover {
+            background-color: #b7f1ec;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            padding: 30px;
+            text-align: center;
+            margin: 20px auto;
+            color: white;
+            background-color: rgba(29, 112, 102, 0.3);
+            transition: box-shadow 0.3s ease;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgb(26, 132, 146);
+        }
+        .event-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .event {
+            width: 100%;
+            max-width: 600px;
+            background-color: rgba(29, 112, 102, 0.3);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            margin: 20px 0;
+            transition: box-shadow 0.3s ease;
+            text-align: left;
+        }
+        .event h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: white;
+        }
+        .event p {
+            font-size: 1em;
+            margin-bottom: 5px;
+            color: white;
+        }
+        .event a {
+            color: #1f3f3d;
+            text-decoration: none;
+        }
+        .event a:hover {
+            text-decoration: underline;
+        }
+        .event.past-event {
+            background-color: rgba(236, 100, 92, 0.3);
+        }
+        .event.upcoming-event {
+            background-color: rgba(144, 238, 144, 0.3);
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>CAMPUS EVENT HUB</h1>
+    <div class="nav-container">
+        <a href="Homepage.html">Home</a>
+        <a href="clubevent.html">Club Events</a>
+        <a href="clgevents.html">College Events</a>
+        <a href="login.html">Logout</a>
+    </div>
+</div>
+<div class="container">
+    <h1>All Club Events</h1>
+    <div class="event-container" id="events-container">
+        <!-- Events will be displayed here -->
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('retrieve_allclubs.php')
+            .then(response => response.json())
+            .then(events => {
+                const eventsContainer = document.getElementById('events-container');
+                const today = new Date().toISOString().split('T')[0];
+                
+                events.sort((a, b) => new Date(b.eventDate) - new Date(a.eventDate));
+                
+                events.forEach(event => {
+                    const eventElement = document.createElement('div');
+                    eventElement.classList.add('event');
+                    
+                    if (event.eventDate < today) {
+                        eventElement.classList.add('past-event');
+                    } else {
+                        eventElement.classList.add('upcoming-event');
+                    }
+
+                    eventElement.innerHTML = `
+                        <h4>Event Name: ${event.eventName}</h4>
+                        <p>Date: ${event.eventDate}</p>
+                        <p>Description: ${event.eventDescription}</p>
+                        ${event.googleFormLink ? `<a href="${event.googleFormLink}" target="_blank">More Info</a>` : ''}
+                    `;
+                    eventsContainer.appendChild(eventElement);
+                });
+            })
+            .catch(error => console.error('Error fetching events:', error));
+    });
+</script>
+
+</body>
+</html>

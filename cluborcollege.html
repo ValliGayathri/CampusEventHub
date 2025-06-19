@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Events</title>
+    <style>
+        body {
+            background-color: #f2f7f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('bgimg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            color: #2e7383;
+            margin-bottom: 0;
+        }
+        .header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+            font-size: larger;
+            width: 100%;
+        }
+        .nav-container a, .nav-container button {
+            color: #2e7383;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 5px;
+            box-shadow: 0 4px 8px rgb(26, 132, 146);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: larger;
+        }
+        .nav-container a:hover, .nav-container button:hover {
+            background-color: #b7f1ec;
+        }
+        .nav-button{
+            width: 250px;
+            height: 50px;
+            border-radius: 0px;
+        }
+        .container {
+            width: 500px;
+            padding: 30px;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 20px;
+            color: white;
+            background-color: rgba(29, 112, 102, 0.3);
+            transition: box-shadow 0.3s ease;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgb(26, 132, 146);
+        }
+        .button-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: rgb(26, 132, 146);
+            width: 100%;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            height: 40px;
+            color: white;
+            font-size: larger;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        button:hover {
+            background-color: rgba(26, 244, 219, 0.441);
+            box-shadow: 0 0 10px rgba(29, 112, 102, 0.441);
+        }
+        .hidden {
+            display: none;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: larger;
+            color: white;
+        }
+        input[type="text"], input[type="date"], input[type="time"], input[type="password"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .event-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .event {
+            width: 100%;
+            background-color: rgba(29, 112, 102, 0.3);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            margin-bottom: 20px;
+            transition: box-shadow 0.3s ease;
+        }
+        .event h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: white;
+        }
+        .event p {
+            font-size: 1em;
+            margin-bottom: 5px;
+            color: white;
+        }
+        .event a {
+            color: #1f3f3d;
+            text-decoration: none;
+        }
+        .event a:hover {
+            text-decoration: underline;
+        }
+        .event.past-event {
+            background-color: rgba(236, 100, 92, 0.3);
+        }
+        .event.upcoming-event {
+            background-color: rgba(144, 238, 144, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CAMPUS EVENT HUB</h1>
+        <div class="nav-container">
+            <a href="Homepage.html">Home</a>
+            <a href="clubevent.html">Club Events</a>
+            <a href="clgevents.html">College Events</a>
+            <button id="changePasswordBtn" class="nav-button">Change Password</button>
+            <a href="login.html">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 style="text-align: center; color: #2e7383">Select Events Category</h1>
+        <div class="button-container">
+            <button id="collegeEventsBtn">College Events</button>
+            <button id="clubEventsBtn">Club Events</button>
+        </div>
+    </div>
+
+    <div id="changePasswordFormContainer" class="hidden container">
+        <h1>Change Password</h1>
+        <form id="changePasswordForm">
+            <div class="form-group">
+                <label for="currentPassword">Current Password</label>
+                <input type="password" id="currentPassword" name="currentPassword" required>
+            </div>
+            <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <input type="password" id="newPassword" name="newPassword" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm New Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <button type="submit">Change Password</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('collegeEventsBtn').addEventListener('click', function() {
+            window.location.href = 'collegeeventsview.html';
+        });
+
+        document.getElementById('clubEventsBtn').addEventListener('click', function() {
+            window.location.href = 'clubeventsview2.html';
+        });
+
+        document.getElementById('changePasswordBtn').addEventListener('click', function() {
+            document.getElementById('changePasswordFormContainer').classList.toggle('hidden');
+        });
+
+        document.getElementById('changePasswordForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+
+            fetch('change_password3.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(result => {
+                alert(result);
+                document.getElementById('changePasswordForm').reset();
+                document.getElementById('changePasswordFormContainer').classList.add('hidden');
+            })
+            .catch(error => console.error('Error changing password:', error));
+        });
+    </script>
+</body>
+</html>

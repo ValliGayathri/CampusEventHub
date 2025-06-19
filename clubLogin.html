@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Login</title>
+    <style>
+        body {
+            background-color: #f2f7f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('bgimg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #2e7383;
+            margin-bottom: 0;
+        }
+        .header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            font-size: larger;
+            width: 100%;
+        }
+        .nav-container a {
+            color: #2e7383;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 5px;
+            box-shadow: 0 4px 8px rgb(26, 132, 146);
+        }
+        .nav-container a:hover {
+            background-color: #b7f1ec;
+        }
+        .container {
+            margin: auto;
+            width: 300px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            background-color: rgba(29, 112, 102, 0.441);
+            transition: box-shadow 0.3s ease;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgb(26, 132, 146);
+        }
+        .box:hover {
+            box-shadow: 0 8px 16px rgba(141, 66, 66, 0.2);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: rgb(26, 132, 146);
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            height: 40px;
+            color: white;
+            font-size: larger;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 10px; /* Add margin-top to buttons for spacing */
+        }
+        button:hover {
+            background-color: rgba(26, 244, 219, 0.441);
+            box-shadow: 0 0 10px rgba(29, 112, 102, 0.441);
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Align buttons to the bottom */
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+
+        <h1>CAMPUS EVENT HUB</h1>
+        <div class="nav-container">
+            <a href="Homepage.html">Home</a>
+            <a href="clubevent.html">Club Events</a>
+            <a href="clgevents.html">College Events</a>
+            <a href="login.html">Logout</a>
+        </div>
+    </div>
+
+    
+
+    <div class="container">
+        <h1 style="text-align: center; color: #2e7383;" id="clubTitle">Club Login</h1>
+        <form id="loginForm" action="coord_login2.php" method="post">
+            <input type="hidden" id="clubName" name="clubName">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const club = urlParams.get('club');
+            const clubTitle = document.getElementById('clubTitle');
+            const clubNameInput = document.getElementById('clubName');
+            clubTitle.textContent = club.charAt(0).toUpperCase() + club.slice(1).replace('Club', ' Club') + ' Login';
+            clubNameInput.value = club;
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+
+            fetch('coord_login2.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    window.location.href = 'coordinatorview.php';
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again later.');
+            });
+        });
+    </script>
+</body>
+</html>

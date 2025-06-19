@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            background-color: #f2f7f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('bgimg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #2e7383;
+            margin-bottom: 0;
+        }
+        .header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            font-size: larger;
+            width: 100%;
+        }
+        .nav-container a {
+            text-decoration: none;
+            color: #2e7383;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .nav-container a:hover {
+            background-color: #e2edec;
+        }
+        .parent-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .box {
+            width: 300px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            background-color: rgba(29, 112, 102, 0.441);
+            transition: box-shadow 0.3s ease;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgb(26, 132, 146);
+        }
+        .box:hover {
+            box-shadow: 0 8px 16px rgba(141, 66, 66, 0.2);
+        }
+        input {
+            height: 40px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 10px 0;
+        }
+        label {
+            font-size: larger;
+            color: white;
+        }
+        button {
+            background-color: rgb(26, 132, 146);
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            height: 40px;
+            color: white;
+            font-size: larger;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: rgba(26, 244, 219, 0.441);
+            box-shadow: 0 0 10px rgba(29, 112, 102, 0.441);
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            flex-grow: 1;
+        }
+
+    </style>
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const errorMessage = urlParams.get('error');
+            if (errorMessage) {
+                alert("Invalid username or password. Please try again.");
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>CAMPUS EVENT HUB</h1>
+        <div class="nav-container">
+            <a href="Homepage.html">Home</a>
+            <a href="login.html">Login</a>
+        </div>
+    </div>
+
+    <div class="parent-container">
+        <div class="box">
+            <form id="facultyForm" action="login_check.php" method="post">
+                <h2>Faculty Login</h2>
+                <label for="facultyUsername">Username:</label><br>
+                <input type="text" id="facultyUsername" name="username" placeholder="Enter your Username" required><br>
+                <label for="facultyPassword">Password:</label><br>
+                <input type="password" id="facultyPassword" name="password" placeholder="Enter your Password" required><br><br>
+                <input type="hidden" name="role" value="faculty">
+                <button type="submit">Login</button> 
+            </form>
+        </div>
+
+        <div class="box">
+            <form id="coordinatorForm" action="login_check.php" method="post">
+                <h2>Coordinator Login</h2>
+                <label for="coordinatorUsername">Username:</label><br>
+                <input type="text" id="coordinatorUsername" name="username" placeholder="Enter your Username" required><br>
+                <label for="coordinatorPassword">Password:</label><br>
+                <input type="password" id="coordinatorPassword" name="password" placeholder="Enter your Password" required><br><br>
+                <input type="hidden" name="role" value="coordinator">
+                <button type="submit">Login</button> 
+            </form>
+        </div>
+        
+        <div class="box">
+            <form id="studentForm" action="login_check.php" method="post">
+                <h2>Student Login</h2>
+                <label for="studentUsername">Username:</label><br>
+                <input type="text" id="studentUsername" name="username" placeholder="Enter your Username" required><br>
+                <label for="studentPassword">Password:</label><br>
+                <input type="password" id="studentPassword" name="password" placeholder="Enter your Password" required><br><br>
+                <input type="hidden" name="role" value="student">
+                <button type="submit">Login</button> 
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Events</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <img src="svecwlogo.jpg" class="logo" alt="SVECW Logo" width="100">
+        <h1 id="clubNameHeading"></h1>
+    </div>
+
+    <div class="nav-container">
+        <div class="nav-container">
+            <a href="Homepage.html">Home</a>
+            <a href="clubevent.html">Club Events</a>
+            <a href="clgevents.html">College Events</a>
+            <a href="login.html">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="button-container">
+            <button id="postEventBtn">Post Event</button>
+            <button id="viewEventsBtn">View My Events</button>
+            <button id="viewAllEventsBtn">View All Club Events</button>
+        </div>
+
+        <div id="eventFormContainer" class="hidden">
+            <form id="eventForm">
+                <h2>Post an Event</h2>
+                <label for="eventName">Event Name:</label>
+                <input type="text" id="eventName" name="eventName" required>
+                
+                <label for="eventDate">Event Date:</label>
+                <input type="date" id="eventDate" name="eventDate" required>
+                
+                <label for="eventDescription">Description:</label>
+                <textarea id="eventDescription" name="eventDescription" required></textarea>
+                
+                <label for="googleFormLink">Google Form Link:</label>
+                <input type="url" id="googleFormLink" name="googleFormLink">
+                
+                <label for="googleSheetLink">Google Sheet Link:</label>
+                <input type="url" id="googleSheetLink" name="googleSheetLink">
+                
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div id="eventListContainer" class="hidden"></div>
+        <div id="allEventListContainer" class="hidden"></div>
+    </div>
+
+    <script src="scriptco.js"></script>
+</body>
+</html>

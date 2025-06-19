@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f7f5;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: #f2f7f5;
+            border-bottom: 2px solid #ccc;
+        }
+        .header .logo {
+            margin-right: 20px;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            background-color: #1f3f3d;
+            padding: 10px 50px;
+            font-size: larger;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+        .nav-container a {
+            text-decoration: none;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .nav-container a:hover {
+            background-color: #3b706a;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .button-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #ffcc01;
+            width: 200px;
+            border: none;
+            border-radius: 5px;
+            height: 40px;
+            color: white;
+            font-size: larger;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        button:hover {
+            background-color: #e5b801;
+        }
+        .hidden {
+            display: none;
+        }
+        #eventList {
+            text-align: center;
+        }
+        #eventList h2 {
+            color: rgb(0, 55, 255);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="svecwlogo.jpg" class="logo" alt="SVECW Logo" width="100">
+        <h1>SHRI VISHNU ENGINEERING COLLEGE FOR WOMEN, BHIMAVARAM</h1>
+    </div>
+
+    <div class="nav-container">
+        <div class="nav-container">
+            <a href="Homepage.html">Home</a>
+            <a href="clubevent.html">Club Events</a>
+            <a href="clgevents.html">College Events</a>
+            <a href="login.html">Logout</a>
+        </div>
+    </div>
+
+    <h1 style="text-align: center;color: rgb(0, 55, 255);">Please register for the events and test your skills!!!</h1>
+
+    <div class="container">
+        <div class="button-container">
+            <button id="upcomingEventsBtn">Upcoming Events</button>
+            <button id="pastEventsBtn">Past Events</button>
+        </div>
+
+        <div id="eventList" class="hidden"></div>
+    </div>
+
+    <script src="scriptss.js"></script>
+</body>
+</html>

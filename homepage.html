@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Events</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            height: 100%;
+            width: 100%;
+            background: url('bgimg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        body {
+            background-color: #f2f7f5;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #2e7383;
+            margin-bottom: 0;
+        }
+        .header h1 {
+            font-size: 3em;
+            margin: 0;
+            white-space: nowrap;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            width: 100%;
+            position: relative;
+        }
+        .welcome-text {
+            color: #2e7383;
+            text-align: center;
+            margin-right: 2mm; /* Move the text 2mm towards the button */
+        }
+        .welcome-text h2 {
+            text-align: center;
+        }
+        .login-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgb(26, 132, 146);
+            background-color: #2e7383;
+            color: white;
+            margin-left: auto; /* Push the button to the right */
+            margin-right: 2mm; /* Move the button 2mm towards the text */
+        }
+        .carousel-container {
+            background-color: #fff;
+            height: 80vh; /* Increase the height of the carousel container */
+            overflow: hidden;
+            display: flex;
+            background: url('bgimg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            justify-content: center;
+            align-items: center;
+            padding: 0 10px;
+            margin-bottom: 20px;
+        }
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 100vw; /* Allow the carousel to cover the full viewport width */
+            height: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .carousel img {
+            width: 100vw; /* Set the width to cover the full viewport width */
+            height: 80vh; /* Increase the height to 80% of the viewport height */
+            object-fit: cover;
+            position: absolute;
+            transition: opacity 1s ease-in-out;
+        }
+        .carousel img:not(:first-child) {
+            opacity: 0;
+        }
+        .carousel .prev, .carousel .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .carousel .prev {
+            left: 10px;
+        }
+        .carousel .next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 id="heading">CAMPUS EVENT HUB</h1>
+        <a href="login.html" class="login-button">Login</a>
+    </div>
+
+    <div class="carousel-container">
+        <div class="carousel" id="carousel1">
+            <img src="img1.jpg" alt="First Slide">
+            <img src="img2.jpg" alt="Second Slide">
+            <img src="img3.jpg" alt="Fourth Slide">
+            <img src="img4.jpg" alt="Third Slide">
+            <img src="img5.jpg" alt="Fourth Slide">
+            <img src="img6.jpg" alt="Fifth Slide">
+            <img src="img7.jpg" alt="Fifth Slide">
+            <img src="img8.jpg" alt="Sixth Slide">
+            <img src="img9.jpg" alt="Sixth Slide">
+            <button class="prev" onclick="changeSlide('carousel1', -1)">&#10094;</button>
+            <button class="next" onclick="changeSlide('carousel1', 1)">&#10095;</button>
+        </div>
+    </div>
+
+    <script>
+        function showSlide(carouselId, index) {
+            const carousel = document.getElementById(carouselId);
+            const slides = carousel.querySelectorAll('img');
+            if (index >= slides.length) {
+                index = 0;
+            } else if (index < 0) {
+                index = slides.length - 1;
+            }
+
+            slides.forEach((slide, i) => {
+                slide.style.opacity = i === index ? '1' : '0';
+            });
+        }
+
+        function changeSlide(carouselId, direction) {
+            const carousel = document.getElementById(carouselId);
+            const slides = carousel.querySelectorAll('img');
+            let currentSlide = Array.from(slides).findIndex(slide => slide.style.opacity === '1');
+            if (currentSlide === -1) currentSlide = 0;
+
+            showSlide(carouselId, currentSlide + direction);
+        }
+
+        function startCarousels() {
+            const carousels = document.querySelectorAll('.carousel');
+            carousels.forEach(carousel => {
+                const firstSlide = carousel.querySelector('img');
+                if (firstSlide) firstSlide.style.opacity = '1';
+                setInterval(() => changeSlide(carousel.id, 1), 2000);
+            });
+        }
+
+        function animateHeading() {
+            const heading = document.getElementById('heading');
+            const text = heading.textContent;
+            heading.textContent = '';
+            let index = 0;
+
+            function addLetter() {
+                if (index < text.length) {
+                    heading.textContent += text[index];
+                    index++;
+                    setTimeout(addLetter, 200); 
+                }
+            }
+
+            addLetter();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            animateHeading();
+            startCarousels();
+        });
+    </script>
+</body>
+</html>
